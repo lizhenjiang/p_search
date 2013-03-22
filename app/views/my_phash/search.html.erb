@@ -1,0 +1,39 @@
+<div class="container">
+  <!-- Main hero unit for a primary marketing message or call to action -->
+  <div class="hero-unit">
+    <h3 align="center">图像搜索引擎</h3>
+    <form action="search" method="post" enctype="multipart/form-data" class="form-search">
+       <span>图片网上地址:</span> <input type="text" class="input-medium search-query" name="image_url" />
+       <input type="submit" class="btn" value="Submit" class="btn" />
+    </form>
+    <form action="search" method="post" enctype="multipart/form-data" class="form-search">
+       <span>本地图片上传:</span> <input type="file" class="input-medium search-query" name="image[image]" />
+       <input type="submit" class="btn" value="Submit" class="btn" />
+    </form>
+  </div>
+
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="span4">
+      <h4>@原始图像预览</h4>
+      <% if @image != nil %>
+      <img src=<%="#{@image.split('public')[-1]}"%> width="200" height="200" class="img-rounded">
+      <% end %>
+    </div>
+    <div class="span8">
+      <h4>@相似图像列表</h4>
+      <% if @similars != [] %>
+      <% for i in 0...@similars.size %>
+        <img src=<%='/' + @similars[i].picture %> width="200" height="200" class="img-polaroid"><%=@similars[i].distance%>
+      <% end %>
+      <% end %>
+    </div>
+  </div>
+
+  <hr>
+
+  <footer>
+    <p>&copy; Company 2013</p>
+  </footer>
+
+</div> <!-- /container -->
